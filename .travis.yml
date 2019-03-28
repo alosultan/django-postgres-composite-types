@@ -17,7 +17,7 @@ env:
 
 matrix:
   include:
-    - env: TOX_ENV=flake8,isort,pylint
+    - env: TOX_ENV=flake8,isort,pylint LINT=true
       python: '3.6'
 
 install:
@@ -42,5 +42,5 @@ deploy:
   on:
     tags: true
     all_branches: true
-    python: 3.5
-    condition: '"$TRAVIS_TAG" = "v$(python setup.py --version)"'
+    python: 3.7
+    condition: '"$TRAVIS_TAG" = "v$(python setup.py --version)" && "$LINT" = "true"'
